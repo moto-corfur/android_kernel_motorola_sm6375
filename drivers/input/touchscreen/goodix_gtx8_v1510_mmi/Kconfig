@@ -1,47 +1,55 @@
 #
-# Goodix touchscreen driver configuration
+# Goodix GTx8 Touchscreen driver
 #
-menuconfig TOUCHSCREEN_GOODIX_GTX8_MMI
-	bool "Goodix GTx8 touchscreen"
-	depends on I2C
-	default y
+
+config TOUCHSCREEN_GOODIX_GTX8_MMI
+	tristate "Goodix GTx8 Moto touchpanel driver"
+	default n
 	help
-	  Say Y here if you have a Goodix GTx5xx touchscreen connected
+	  This is the main file for touchpanel driver for Goodix GTx8
+	  touchscreens.
+
+	  Say Y here if you have a Goodix GTx8 touchscreen connected
 	  to your system.
 
 	  If unsure, say N.
 
-if TOUCHSCREEN_GOODIX_GTX8_MMI
+	  To compile this driver as a module, choose M here: the
+	  module will be called goodix_v1510_mmi.
 
-
-config TOUCHSCREEN_GOODIX_GTX8_MMI_UPDATE
-	tristate "Goodix GTx8 firmware update module"
-	default y
-	help
-	  Say Y here to enable support for doing firmware update.
-
-	  If unsure, say N.
-
-	  To compile this driver as a module, choose M here.
-
-config TOUCHSCREEN_GOODIX_GTX8_MMI_GESTURE
-	tristate "Goodix GTx8 gesture wakeup feature"
+config TOUCHSCREEN_GOODIX_GTX8_MMI_GESTURES
+	bool "Goodix GTx8 Moto Gestures"
+	depends on TOUCHSCREEN_GOODIX_GTX8_MMI && INPUT_TOUCHSCREEN_MMI
 	default n
 	help
-	  Say Y here to enable support for gesture wakeup feature..
+	  Say Y here to enable support for Goodix GTx8 Moto gestures functionality.
+	  If unsure, say N.
+
+config TOUCHSCREEN_GOODIX_GTX8_MMI_UPDATE
+	tristate "Goodix GTx8 Moto touchpanel auto update support"
+	depends on TOUCHSCREEN_GOODIX_GTX8_MMI
+	default n
+	help
+	  This enables support for firmware update for Goodix GTx8
+	  touchscreens.
+
+	  Say Y here if you have a Goodix GTx8 touchscreen connected
+	  to your system.
 
 	  If unsure, say N.
 
-	  To compile this driver as a module, choose M here.
+	  To compile this driver as a module, choose M here: the
+	  module will be called goodix_v1510_update_mmi.
 
 config TOUCHSCREEN_GOODIX_GTX8_MMI_TOOLS
-	tristate "Goodix touch tools support"
-	default y
+	tristate "Goodix GTx8 Moto touchpanel Tools"
+	depends on TOUCHSCREEN_GOODIX_GTX8_MMI
+	default n
 	help
-	  Say Y here to enable debug tools.
+	  This is application debug interface support for Goodix GTx8
+	  touchscreens.
 
 	  If unsure, say N.
 
-	  To compile this driver as a module, choose M here.
-
-endif
+	  To compile this driver as a module, choose M here: the
+	  module will be called goodix_v1510_ts_tools_mmi.

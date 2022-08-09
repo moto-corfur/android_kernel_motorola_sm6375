@@ -1,0 +1,61 @@
+config INPUT_TOUCHSCREEN_MMI
+	tristate "Moto touchscreen gestures"
+	default n
+	help
+	 Say Y here if you wish to include support for Moto touchscreen gestures.
+	 If unsure, say N.
+
+config TOUCHCLASS_MMI_DEBUG_INFO
+	bool "Moto touchscreen gestures debug info"
+	depends on INPUT_TOUCHSCREEN_MMI
+	default n
+	help
+	 Say Y here if you wish to include support for Moto touchscreen gestures debugging info.
+	 If unsure, say N.
+
+config TOUCHCLASS_MMI_GESTURE_POISON_EVENT
+	bool "Moto gestures event poison"
+	depends on INPUT_TOUCHSCREEN_MMI
+	default n
+	help
+	 Say Y here if you wish to include support for Moto gestures event poison.
+	 If unsure, say N.
+
+config TOUCHCLASS_MMI_MULTIWAY_UPDATE_FW
+	tristate "Moto touchclass mmi multiway update fw"
+	default n
+	help
+	 Say Y here if you wish to include support for Moto touchclass mmi multiway update fw.
+	 If unsure, say N.
+
+config DRM_PANEL_NOTIFICATIONS
+	bool "Moto drm panel notifications"
+	depends on INPUT_TOUCHSCREEN_MMI
+	default n
+	help
+	 Say Y here if you wish to include support for Moto drm panel notifications.
+	 If unsure, say N.
+
+config DRM_PANEL_EVENT_NOTIFICATIONS
+	bool "Moto drm panel event notifications"
+	depends on INPUT_TOUCHSCREEN_MMI
+	default n
+	help
+	 Say Y here if you wish to include support for Moto drm panel event notifications.
+	 If unsure, say N.
+
+config TOUCH_PANEL_NOTIFICATIONS
+	bool "Moto touchpanel notifications"
+	depends on INPUT_TOUCHSCREEN_MMI
+	default n
+	help
+	 Say Y here if you wish to include support for Moto touchpanel notifications.
+	 If unsure, say N.
+
+config TS_KERNEL_USE_GKI
+	bool "Moto ts kernel use gki"
+	depends on INPUT_TOUCHSCREEN_MMI
+	default n
+	help
+	 Say Y here if you wish to include support for Moto ts kernel use gki.
+	 If unsure, say N.

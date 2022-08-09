@@ -1,13 +1,22 @@
-all: modules
+ifneq ($(filter m y, $(CONFIG_TOUCHCLASS_MMI_GESTURE_POISON_EVENT)),)
+	ccflags-y += -DTS_MMI_TOUCH_GESTURE_POISON_EVENT
+endif
+ifneq ($(filter m y, $(CONFIG_TOUCHCLASS_MMI_MULTIWAY_UPDATE_FW)),)
+	ccflags-y += -DTS_MMI_TOUCH_MULTIWAY_UPDATE_FW
+endif
+ifneq ($(filter m y, $(CONFIG_DRM_PANEL_NOTIFICATIONS)),)
+	ccflags-y += -DCONFIG_DRM_PANEL_NOTIFICATIONS
+endif
+ifneq ($(filter m y, $(CONFIG_DRM_PANEL_EVENT_NOTIFICATIONS)),)
+	ccflags-y += -DCONFIG_DRM_PANEL_EVENT_NOTIFICATIONS
+endif
+ifneq ($(filter m y, $(CONFIG_TOUCH_PANEL_NOTIFICATIONS)),)
+	ccflags-y += -DCONFIG_PANEL_NOTIFICATIONS
+endif
+ifneq ($(filter m y, $(CONFIG_TS_KERNEL_USE_GKI)),)
+	ccflags-y += -DCONFIG_TS_KERNEL_USE_GKI
+endif
 
-modules:
-	$(MAKE) -C $(KERNEL_SRC) M=$(M) modules $(KBUILD_OPTIONS)
+touchscreen_mmi-y += touchscreen_mmi_class.o touchscreen_mmi_panel.o touchscreen_mmi_notif.o touchscreen_mmi_gesture.o
 
-modules_install:
-	$(MAKE) INSTALL_MOD_STRIP=1 -C $(KERNEL_SRC) M=$(M) modules_install
-
-%:
-	$(MAKE) -C $(KERNEL_SRC) M=$(M) $@ $(KBUILD_OPTIONS)
-
-KBUILD_EXTRA_SYMBOLS += $(M)/../../../sensors/Module.symvers
-KBUILD_EXTRA_SYMBOLS += $(M)/../../../mmi_relay/Module.symvers
+obj-$(CONFIG_INPUT_TOUCHSCREEN_MMI) += touchscreen_mmi.o

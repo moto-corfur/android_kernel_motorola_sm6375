@@ -50,7 +50,7 @@ void goodix_fw_update_uninit(void);
 extern int goodix_ts_mmi_dev_register(struct platform_device *ts_device);
 extern void goodix_ts_mmi_dev_unregister(struct platform_device *ts_device);
 extern int __init goodix_gsx_gesture_init(void);
-extern void __exit goodix_gsx_gesture_exit(void);
+extern void goodix_gsx_gesture_exit(void);
 extern int __init goodix_tools_init(void);
 extern void __exit goodix_tools_exit(void);
 
@@ -2237,7 +2237,7 @@ err_finger:
  * goodix_ts_probe - called by kernel when Goodix touch
  *  platform driver is added.
  */
-static int goodix_ts_probe(struct platform_device *pdev)
+static int __init goodix_ts_probe(struct platform_device *pdev)
 {
 	struct goodix_ts_core *core_data = NULL;
 	struct goodix_ts_device *ts_device;

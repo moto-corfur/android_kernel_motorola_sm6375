@@ -1,17 +1,6 @@
-all: modules
+ifneq ($(filter m y,$(CONFIG_INPUT_TOUCHSCREEN_MMI)),)
+	ccflags-y += -DCONFIG_INPUT_TOUCHSCREEN_MMI
+endif
 
-modules:
-	$(MAKE) -C $(KERNEL_SRC) M=$(M) modules $(KBUILD_OPTIONS)
-
-modules_install:
-	$(MAKE) INSTALL_MOD_STRIP=1 -C $(KERNEL_SRC) M=$(M) modules_install
-
-%:
-	$(MAKE) -C $(KERNEL_SRC) M=$(M) $@ $(KBUILD_OPTIONS)
-
-clean:
-	rm -f *.o *.ko *.mod.c *.mod.o *~ .*.cmd Module.symvers
-	rm -rf .tmp_versions
-
-KBUILD_EXTRA_SYMBOLS += $(M)/../../../mmi_info/$(GKI_OBJ_MODULE_DIR)/Module.symvers
-KBUILD_EXTRA_SYMBOLS += $(M)/../touchscreen_mmi/$(GKI_OBJ_MODULE_DIR)/Module.symvers
+goodix_v1510_mmi-y += goodix_ts_i2c.o goodix_ts_core.o goodix_ts_test.o goodix_cfg_bin.o goodix_gtx8_update.o goodix_ts_gesture.o goodix_ts_tools.o goodix_ts_mmi.o
+obj-$(CONFIG_TOUCHSCREEN_GOODIX_GTX8_MMI) += goodix_v1510_mmi.o
