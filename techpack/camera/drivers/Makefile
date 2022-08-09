@@ -153,6 +153,7 @@ camera-$(CONFIG_SPECTRA_SENSOR) += \
 	cam_sensor_module/cam_cci/cam_cci_dev.o \
 	cam_sensor_module/cam_cci/cam_cci_core.o \
 	cam_sensor_module/cam_cci/cam_cci_soc.o \
+	cam_sensor_module/cam_cci/cci_intf.o \
 	cam_sensor_module/cam_csiphy/cam_csiphy_soc.o \
 	cam_sensor_module/cam_csiphy/cam_csiphy_dev.o \
 	cam_sensor_module/cam_csiphy/cam_csiphy_core.o \
