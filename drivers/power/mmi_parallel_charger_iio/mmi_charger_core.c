@@ -70,7 +70,7 @@ const struct mmi_chrg_dev_ops dev_ops[] = {
 	},
 };
 
-bool is_chan_valid(struct mmi_charger_manager *chip,
+static bool is_chan_valid(struct mmi_charger_manager *chip,
 		enum mmi_charger_ext_iio_channels chan)
 {
 	int rc;
