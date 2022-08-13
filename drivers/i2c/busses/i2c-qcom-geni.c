@@ -91,8 +91,6 @@ struct geni_i2c_dev {
 	void *dma_buf;
 	size_t xfer_len;
 	dma_addr_t dma_addr;
-	u32 noise_rjct_scl;
-	u32 noise_rjct_sda;
 };
 
 struct geni_i2c_err_log {
