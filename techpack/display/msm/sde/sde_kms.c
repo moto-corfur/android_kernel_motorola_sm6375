@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
  * Copyright (c) 2014-2021, The Linux Foundation. All rights reserved.
  * Copyright (C) 2013 Red Hat
  * Author: Rob Clark <robdclark@gmail.com>
@@ -1246,12 +1246,14 @@ static void _sde_kms_release_splash_resource(struct sde_kms *sde_kms,
 {
 	struct msm_drm_private *priv;
 	struct sde_splash_display *splash_display;
+	struct sde_power_handle *phandle;
 	int i;
 
 	if (!sde_kms || !crtc)
 		return;
 
 	priv = sde_kms->dev->dev_private;
+	phandle = &priv->phandle;
 
 	if (!crtc->state->active || !sde_kms->splash_data.num_splash_displays)
 		return;
@@ -1278,9 +1280,9 @@ static void _sde_kms_release_splash_resource(struct sde_kms *sde_kms,
 	/* remove the votes if all displays are done with splash */
 	if (!sde_kms->splash_data.num_splash_displays) {
 		for (i = 0; i < SDE_POWER_HANDLE_DBUS_ID_MAX; i++)
-			sde_power_data_bus_set_quota(&priv->phandle, i,
+			sde_power_data_bus_set_quota(phandle, i,
 				SDE_POWER_HANDLE_ENABLE_BUS_AB_QUOTA,
-				SDE_POWER_HANDLE_ENABLE_BUS_IB_QUOTA);
+				phandle->ib_quota[i]);
 
 		pm_runtime_put_sync(sde_kms->dev->dev);
 	}
@@ -3939,6 +3941,7 @@ retry:
 				DRM_ERROR("failed to get crtc %d state\n",
 						conn->state->crtc->base.id);
 				drm_connector_list_iter_end(&conn_iter);
+				ret = -EINVAL;
 				goto unlock;
 			}
 
@@ -3977,6 +3980,12 @@ unlock:
 		drm_modeset_backoff(&ctx);
 		goto retry;
 	}
+
+	if ((ret || !num_crtcs) && sde_kms->suspend_state) {
+		drm_atomic_state_put(sde_kms->suspend_state);
+		sde_kms->suspend_state = NULL;
+	}
+
 	drm_modeset_drop_locks(&ctx);
 	drm_modeset_acquire_fini(&ctx);
 
@@ -4017,7 +4026,8 @@ static int sde_kms_pm_resume(struct device *dev)
 
 	SDE_EVT32(sde_kms->suspend_state != NULL);
 
-	drm_mode_config_reset(ddev);
+	if (sde_kms->suspend_state)
+		drm_mode_config_reset(ddev);
 
 	drm_modeset_acquire_init(&ctx, 0);
 retry:
