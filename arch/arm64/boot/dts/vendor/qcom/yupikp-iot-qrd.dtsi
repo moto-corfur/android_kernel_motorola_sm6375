@@ -1,1 +1,8 @@
 #include "yupikp-qrd.dtsi"
+<<<<<<< HEAD
+=======
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_r66451_amoled_120hz_cmd_cphy>;
+};
+>>>>>>> 073f1e4a87e857cf09d73b9b5f86d7d85d05ff71

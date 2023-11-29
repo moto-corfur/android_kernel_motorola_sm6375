@@ -2623,6 +2623,7 @@ cppflags-$(CONFIG_FEATURE_WLAN_SCAN_PNO) += -DFEATURE_WLAN_SCAN_PNO
 cppflags-$(CONFIG_WLAN_FEATURE_PACKET_FILTERING) += -DWLAN_FEATURE_PACKET_FILTERING
 cppflags-$(CONFIG_DHCP_SERVER_OFFLOAD) += -DDHCP_SERVER_OFFLOAD
 cppflags-$(CONFIG_WLAN_NS_OFFLOAD) += -DWLAN_NS_OFFLOAD
+cppflags-$(CONFIG_WLAN_DYNAMIC_ARP_NS_OFFLOAD) += -DFEATURE_WLAN_DYNAMIC_ARP_NS_OFFLOAD
 cppflags-$(CONFIG_FEATURE_WLAN_RA_FILTERING) += -DFEATURE_WLAN_RA_FILTERING
 cppflags-$(CONFIG_FEATURE_WLAN_LPHB) += -DFEATURE_WLAN_LPHB
 cppflags-$(CONFIG_QCA_SUPPORT_TX_THROTTLE) += -DQCA_SUPPORT_TX_THROTTLE
@@ -3796,11 +3797,9 @@ KBUILD_CPPFLAGS += $(cppflags-y)
 # will override the kernel settings.
 ifeq ($(call cc-option-yn, -Wmaybe-uninitialized), y)
 ccflags-y += -Wmaybe-uninitialized
-ifneq (y,$(CONFIG_ARCH_MSM))
-ccflags-y += -Wframe-larger-than=4096
-endif
 endif
 ccflags-y += -Wmissing-prototypes
+ccflags-y += -Wframe-larger-than=4096
 
 ifeq ($(call cc-option-yn, -Wheader-guard), y)
 ccflags-y += -Wheader-guard

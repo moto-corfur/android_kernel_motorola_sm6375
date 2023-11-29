@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <linux/module.h>
@@ -532,7 +533,6 @@ static int cam_ois_fw_coeff_download(struct cam_ois_ctrl_t *o_ctrl)
 
 	snprintf(name_coeff, 32, "%s.coeff", o_ctrl->ois_name);
 	fw_name_coeff = name_coeff;
-
 	rc = request_firmware(&fw, fw_name_coeff, dev);
 	if (rc) {
 		CAM_ERR(CAM_OIS, "Failed to locate %s", fw_name_coeff);
@@ -540,6 +540,7 @@ static int cam_ois_fw_coeff_download(struct cam_ois_ctrl_t *o_ctrl)
 	}
 
 	total_bytes = fw->size;
+
 	if(o_ctrl->ois_fw_txn_data_sz == 0)
 		txn_data_size = total_bytes;
 	else

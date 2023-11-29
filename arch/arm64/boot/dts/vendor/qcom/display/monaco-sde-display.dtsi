@@ -90,8 +90,14 @@
 			qcom,supply-name = "vddio";
 			qcom,supply-min-voltage = <1800000>;
 			qcom,supply-max-voltage = <2000000>;
+<<<<<<< HEAD
 			qcom,supply-enable-load = <62000>;
 			qcom,supply-disable-load = <80>;
+=======
+			qcom,supply-enable-load = <4000>;
+			qcom,supply-disable-load = <80>;
+			qcom,supply-ulp-load = <100>;
+>>>>>>> 073f1e4a87e857cf09d73b9b5f86d7d85d05ff71
 			qcom,supply-post-on-sleep = <20>;
 		};
 
@@ -143,6 +149,10 @@
 		qcom,platform-te-gpio = <&tlmm 73 0>;
 		qcom,panel-te-source = <0>;
 		qcom,needs-clk-src-reset;
+<<<<<<< HEAD
+=======
+		qcom,needs-ctrl-vreg-disable;
+>>>>>>> 073f1e4a87e857cf09d73b9b5f86d7d85d05ff71
 		vddio-supply = <&L21A>;
 		ibb-supply = <&display_panel_ibb>;
 		qcom,mdp = <&mdss_mdp>;

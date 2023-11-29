@@ -179,10 +179,18 @@
 			"lut_clk", "rot_clk";
 
 	/* data and reg bus scale settings */
+<<<<<<< HEAD
 	interconnects = <&mmss_noc MASTER_MDP0 &mc_virt SLAVE_EBI1>,
 			<&gem_noc MASTER_APPSS_PROC
 				&cnoc2 SLAVE_DISPLAY_CFG>;
 	interconnect-names = "qcom,sde-data-bus0", "qcom,sde-reg-bus";
+=======
+	interconnects = <&mmss_noc MASTER_MDP0 &gem_noc SLAVE_LLCC>,
+			<&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
+			<&gem_noc MASTER_APPSS_PROC
+				&cnoc2 SLAVE_DISPLAY_CFG>;
+	interconnect-names = "qcom,sde-data-bus0", "qcom,sde-ebi-bus", "qcom,sde-reg-bus";
+>>>>>>> 073f1e4a87e857cf09d73b9b5f86d7d85d05ff71
 
 	qcom,sde-has-idle-pc;
 	qcom,sde-dspp-ltm-version = <0x00010001>;

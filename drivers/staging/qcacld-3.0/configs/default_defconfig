@@ -157,7 +157,7 @@ endif
 
 ifneq ($(DEVELOPER_DISABLE_BUILD_TIMESTAMP), y)
 ifneq ($(WLAN_DISABLE_BUILD_TAG), y)
-CONFIG_BUILD_TAG := y
+CONFIG_BUILD_TAG := n
 endif
 endif
 
@@ -250,7 +250,7 @@ endif
 	CONFIG_WLAN_DUMP_IN_PROGRESS := y
 endif
 
-CONFIG_WLAN_POWER_DEBUG := y
+CONFIG_WLAN_POWER_DEBUG := n
 #Enable Beacon Reception Stats
 CONFIG_FEATURE_BECN_STATS := y
 endif
