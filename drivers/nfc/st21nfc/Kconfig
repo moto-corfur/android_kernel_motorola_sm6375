@@ -1,0 +1,9 @@
+config NFC_ST21NFC
+	tristate "STMicroelectronics ST21NFC driver"
+	depends on I2C
+	default n
+	help
+	  Say Y here if you have an STMicroelectronics ST21NFC controller connected to your system.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called st21nfc.

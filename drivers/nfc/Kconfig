@@ -61,6 +61,7 @@ source "drivers/nfc/s3fwrn5/Kconfig"
 source "drivers/nfc/st95hf/Kconfig"
 source "drivers/nfc/samsung/Kconfig"
 source "drivers/nfc/sn2xx/Kconfig"
+source "drivers/nfc/st21nfc/Kconfig"
 endmenu
 
 source "drivers/nfc/sn1xx/Kconfig"

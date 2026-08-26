@@ -124,3 +124,5 @@ obj-$(CONFIG_TOUCHSCREEN_GOODIX_BRL_MMI)	+= goodix_berlin_mmi/
 obj-$(CONFIG_TOUCHSCREEN_ILITEK_V3_MMI)	+= ilitek_v3_mmi/
 obj-$(CONFIG_TOUCHSCREEN_NT36xxx_HOSTDL_SPI_MMI)	+= nova_0flash_mmi/
 obj-$(CONFIG_INPUT_TOUCHSCREEN_MMI)	+= touchscreen_mmi/
+obj-$(CONFIG_TOUCHSCREEN_FOCALTECH_V2_MMI)	+= focaltech_v2_mmi/
+obj-$(CONFIG_TOUCHSCREEN_GOODIX_GTX8_V1510_MMI)	+= goodix_gtx8_v1510_mmi/
