@@ -1349,4 +1349,8 @@ source "drivers/input/touchscreen/nova_0flash_mmi/Kconfig"
 
 source "drivers/input/touchscreen/touchscreen_mmi/Kconfig"
 
+source "drivers/input/touchscreen/focaltech_v2_mmi/Kconfig"
+
+source "drivers/input/touchscreen/goodix_gtx8_v1510_mmi/Kconfig"
+
 endif
